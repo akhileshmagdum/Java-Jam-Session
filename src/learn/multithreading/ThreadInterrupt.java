@@ -19,18 +19,11 @@ public class ThreadInterrupt {
 
         Thread checkInterruptionThread = new Thread(() -> {
             for (int i = 0; i < 10000; i++) {
-
-                //explicitly checking if the thread is interrupted
-                if (Thread.interrupted()) {
-                    System.out.println("Blocked!");
-                    System.exit(0);
-                } else {
-                    System.out.println(i);
-                }
+                System.out.println(i);
             }
         });
 
+        checkInterruptionThread.setDaemon(true);
         checkInterruptionThread.start();
-        checkInterruptionThread.interrupt();
     }
 }

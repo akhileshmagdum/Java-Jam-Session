@@ -1,6 +1,6 @@
 package learn.multithreading;
 
-public class ThreadsObj {
+public class ThreadObj {
 
     public static void main(String[] args) {
         Thread thread = new NewThread();

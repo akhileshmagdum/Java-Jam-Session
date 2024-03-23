@@ -1,6 +1,6 @@
 package learn.multithreading;
 
-public class ThreadsDemo {
+public class ThreadsBasics {
 
     public static void main(String[] args) throws InterruptedException {
         Thread thread = new Thread(new Runnable() {

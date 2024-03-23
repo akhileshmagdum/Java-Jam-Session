@@ -7,9 +7,16 @@ public class ThreadsDemo {
             @Override
             public void run() {
                 System.out.println("Inside the custom thread");
+                throw new RuntimeException("This is an demo exception");
             }
         });
         thread.setName("customThread");
+        thread.setUncaughtExceptionHandler(new Thread.UncaughtExceptionHandler() {
+            @Override
+            public void uncaughtException(Thread t, Throwable e) {
+                System.out.println("Exception caught " + t.getName() + " " + e.getLocalizedMessage());
+            }
+        });
 
         Thread threadLambda = new Thread(() -> System.out.println("Inside the lambda thread"));
         threadLambda.setName("threadLambda");

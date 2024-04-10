@@ -7,41 +7,41 @@ package learn.multithreading;
 public class PrintOddEvenAlternatively {
 
     public static final Object lock = new Object();
-    public static final Integer MAX_NUMBER = 10;
-    public static Integer currentNumber = 1;
 
     public static void main(String[] args) {
+        alternateThreadExecutionUsingSynchronizedBlock();
+    }
+
+    public static void alternateThreadExecutionUsingSynchronizedBlock() {
         Thread evenThread = new Thread(() -> {
-            while (currentNumber <= MAX_NUMBER) {
-                synchronized (lock) {
-                    if (currentNumber % 2 == 0) {
-                        System.out.println(currentNumber);
-                        currentNumber++;
-                        lock.notify();
-                    } else {
+            synchronized (lock) {
+                for (int i = 0; i < 10; i++) {
+                    if (i % 2 == 0) {
+                        System.out.println("even: " + i);
                         try {
-                            lock.wait();
+                            lock.wait(); // Wait the thread so other thread can start
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }
+                    } else {
+                        lock.notify(); // Notify the waiting thread to start
                     }
                 }
             }
         });
 
         Thread oddThread = new Thread(() -> {
-            while (currentNumber <= MAX_NUMBER) {
-                synchronized (lock) {
-                    if (currentNumber % 2 != 0) {
-                        System.out.println(currentNumber);
-                        currentNumber++;
-                        lock.notify(); //Notify thread to stop waiting
-                    } else {
+            synchronized (lock) {
+                for (int i = 0; i < 10; i++) {
+                    if (i % 2 != 0) {
+                        System.out.println("odd: " + i);
                         try {
-                            lock.wait(); //Wait for notification
+                            lock.wait(); // Wait the thread so other thread can start
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }
+                    } else {
+                        lock.notify(); // Notify the waiting thread to start
                     }
                 }
             }

@@ -1,7 +1,8 @@
 package learn.core;
 
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class StreamDemo {
 
@@ -76,5 +77,46 @@ public class StreamDemo {
                 .boxed()
                 .toList();
         System.out.println(sumOfInnerList);
+
+        //Grouping
+        Map<String, List<String>> departmentWiseEmployeeList = employeeList.stream()
+                .collect(Collectors.groupingBy(Employee::getDepartment,
+                        Collectors.mapping(Employee::getName, Collectors.toList())));
+        departmentWiseEmployeeList.forEach((k, v) -> System.out.println(k + " : " + v));
+
+        //SummaryStatistics
+        IntSummaryStatistics statistics = employeeList.stream()
+                .mapToInt(e -> (int) e.getSalary())
+                .summaryStatistics();
+        System.out.println(statistics);
+
+        //Average in groups
+        Map<String, Double> averageSalaryOfEachDepartment = employeeList.stream()
+                .collect(Collectors.groupingBy(Employee::getDepartment,
+                        Collectors.averagingDouble(Employee::getSalary)));
+        averageSalaryOfEachDepartment.forEach((k, v) -> System.out.println(k + " : " + v));
+
+        //Partitioning
+        Map<Boolean, List<Integer>> evenOddStream = intListOfList.stream()
+                .flatMap(i -> i.stream()).collect(Collectors.partitioningBy(i -> i % 2 == 0));
+        evenOddStream.forEach((k, v) -> System.out.println(k + " : " + v));
+
+        //Combining streams together
+        List<Integer> list = Stream.concat(Stream.of(intList), Stream.of(intListOfList.getFirst()))
+                .flatMap(i -> i.stream()).toList();
+        list.forEach(i -> System.out.print(i + " "));
+
+        //Teeing
+        HashMap<String, String> teeingResult = employeeList.stream()
+                .collect(Collectors
+                        .teeing(Collectors.summingDouble(Employee::getSalary),
+                                Collectors.summingInt(Employee::getId),
+                                (salary, id) -> {
+                                    HashMap<String, String> map = new HashMap<>();
+                                    map.put("id", String.valueOf(id));
+                                    map.put("salary", String.valueOf(salary));
+                                    return map;
+                                }));
+        teeingResult.forEach((k, v) -> System.out.println(k + " : " + v));
     }
 }

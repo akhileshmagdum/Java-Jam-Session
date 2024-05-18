@@ -44,8 +44,19 @@ CREATE TABLE IF NOT EXISTS tasks
 );
 
 INSERT INTO public.tasks (id, name, time_req, emp_id)
-VALUES (1, 'Learn SQL', 2, 1),
-       (2, 'Java', 5, 2),
-       (3, 'Microservices', 11, 3);
-INSERT INTO public.tasks (id, name, time_req)
-VALUES (4, 'Play', 3);
+VALUES (5, 'Database Design', 6, 1),
+       (6, 'Frontend Development', 7, 2),
+       (7, 'Backend Development', 8, 3),
+       (8, 'DevOps', 9, 4),
+       (9, 'Testing', 4, 1),
+       (10, 'Debugging', 2, 2),
+       (11, 'Deployment', 5, 3),
+       (12, 'Code Review', 3, 4),
+       (13, 'Documentation', 4, 1),
+       (14, 'Client Meeting', 2, 2),
+       (15, 'Project Planning', 6, 3),
+       (16, 'Design Review', 3, 4),
+       (17, 'Security Audit', 7, 1),
+       (18, 'Performance Tuning', 8, 2),
+       (19, 'Server Maintenance', 9, 3),
+       (20, 'Code Optimization', 5, 4);

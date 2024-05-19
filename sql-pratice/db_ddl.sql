@@ -31,7 +31,9 @@ VALUES (3, 'Michael', 'Johnson', 1, 65000.00);
 INSERT INTO public.employee (id, first_name, last_name, dept_id, salary)
 VALUES (4, 'Emily', 'Davis', 2, 60000.00);
 INSERT INTO public.employee (id, first_name, last_name, dept_id, salary)
-VALUES (1, 'John', 'Doe', 1, 45000.00);
+VALUES (1, 'John', 'Doe', 1, 45000.00),
+       (5, 'Akhilesh', 'Magdum', 1, 12300.00),
+       (6, 'Swapnil', 'Pathak', 1, 12300.00);
 
 CREATE TABLE IF NOT EXISTS tasks
 (

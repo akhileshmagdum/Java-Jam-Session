@@ -102,9 +102,9 @@ public class StreamDemo {
         evenOddStream.forEach((k, v) -> System.out.println(k + " : " + v));
 
         //Combining streams together
-        List<Integer> list = Stream.concat(Stream.of(intList), Stream.of(intListOfList.getFirst()))
+        List<Integer> list = Stream.concat(Stream.of(intList), Stream.of(intListOfList.get(0)))
                 .flatMap(i -> i.stream()).toList();
-        list.forEach(i -> System.out.print(i + " "));
+        System.out.println(list);
 
         //Teeing
         HashMap<String, String> teeingResult = employeeList.stream()
@@ -118,5 +118,18 @@ public class StreamDemo {
                                     return map;
                                 }));
         teeingResult.forEach((k, v) -> System.out.println(k + " : " + v));
+
+        List<Integer> integerList = new ArrayList<>(List.of(1, 2, 3, 47, 6, 1, 2, 5, 1, 2, 4));
+        integerList.add(5, null);
+        integerList.add(7, null);
+        List<Integer> nullFirst = integerList.stream()
+                .sorted(Comparator.nullsFirst(Comparator.naturalOrder()))
+                .toList();
+        System.out.println(nullFirst);
+
+        //Alter function to map
+        List<String> allEmployeeNames = employeeList.stream()
+                .collect(Collectors.mapping(Employee::getName, Collectors.toList()));
+        System.out.println(allEmployeeNames);
     }
 }

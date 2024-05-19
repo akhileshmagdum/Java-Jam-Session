@@ -1,4 +1,4 @@
-package learn.core;
+package learn.core.streamd;
 
 import java.util.*;
 import java.util.stream.Collectors;

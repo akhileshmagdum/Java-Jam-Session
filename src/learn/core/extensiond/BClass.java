@@ -10,4 +10,11 @@ public class BClass extends AClass {
     public void normalMethod() throws RuntimeException {
         System.out.println("From B class");
     }
+
+    /**
+     * This just hides the static method from the superclass and this is not true method overriding
+     */
+    public static void staticMethod() {
+        System.out.println("static B");
+    }
 }

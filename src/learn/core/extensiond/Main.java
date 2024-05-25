@@ -3,10 +3,16 @@ package learn.core.extensiond;
 public class Main {
 
     public static void main(String[] args) throws Exception {
-        AClass a = new BClass();
+        AClass ab = new BClass();
         BClass b = new BClass();
-        System.out.println(a.x); // 10
+        AClass a = new AClass();
+        System.out.println(ab.x); // 10
         b.normalMethod(); //From B class
-        a.normalMethod(); //From B class
+        ab.normalMethod(); //From B class
+        AClass.staticMethod(); //A static
+        BClass.staticMethod(); //B static
+        a.staticMethod(); //A static
+        b.staticMethod(); //B static
+        ab.staticMethod(); //A static
     }
 }

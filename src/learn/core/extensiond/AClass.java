@@ -6,4 +6,8 @@ public class AClass {
     public void normalMethod() throws Exception {
         System.out.println("From class A");
     }
+
+    public static void staticMethod() {
+        System.out.println("static A");
+    }
 }

@@ -15,6 +15,8 @@ public class GeneralTricks {
         System.out.println(new String("Akhilesh") == "Akhilesh"); //false
         System.out.println("Akhilesh" == "Akhilesh"); //true
         System.out.println(new String("Akhilesh").intern() == "Akhilesh"); //true
+
+        // This is called IntegerCache this is done for int with range from -127 to 127 by default
         Integer a = 100;
         Integer b = 100;
         System.out.println(a == b); //true

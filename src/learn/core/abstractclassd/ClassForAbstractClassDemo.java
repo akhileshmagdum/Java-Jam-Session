@@ -7,6 +7,11 @@ public class ClassForAbstractClassDemo extends AbstractClassDemo {
         d.nonAbstractMethod();
         d.setJ(20);
         System.out.println(d.getJ());
+        System.out.println("Abstraction Demo");
+        AbstractClassDemo a = new AClass();
+        AbstractClassDemo b = new BClass();
+        a.abstractMethod(); //Prints Aclass
+        b.abstractMethod(); //Prints Bclass
     }
 
     @Override

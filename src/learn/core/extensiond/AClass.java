@@ -7,6 +7,10 @@ public class AClass {
         System.out.println("From class A");
     }
 
+    /**
+     * If this method is declared as final it will give us compilation error
+     * since method hiding is disabled.
+     */
     public static void staticMethod() {
         System.out.println("static A");
     }

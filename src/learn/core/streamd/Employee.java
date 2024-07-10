@@ -1,4 +1,4 @@
-package learn.core;
+package learn.core.streamd;
 
 public class Employee {
     private int id;
